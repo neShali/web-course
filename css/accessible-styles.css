@@ -280,12 +280,14 @@ h3 {
 }
 
 .about__photo img {
-  border-radius: 999px;
+  border-radius: var(--radius-lg);
   border: 4px solid #ffffff;
   box-shadow: var(--shadow-soft);
 }
 
 .contact {
+  width: clamp(24rem, 50vw, 60rem);
+  margin: 0 auto;
   background-color: var(--bg-card);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
