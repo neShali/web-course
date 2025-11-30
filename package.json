@@ -1,0 +1,35 @@
+{
+  "name": "web-course",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run build:css && vite build",
+    "preview": "vite preview",
+    "build:css": "sass scss/main.scss css/styles.css --no-source-map && postcss css/styles.css -o css/styles.css",
+    "watch:css": "sass scss/main.scss css/styles.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neShali/web-course.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neShali/web-course/issues"
+  },
+  "homepage": "https://github.com/neShali/web-course#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "sass": "^1.94.2",
+    "vite": "^7.2.4"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ]
+}

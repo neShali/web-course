@@ -1,0 +1,421 @@
+$font-family-base: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  sans-serif;
+
+$color-bg-page: #f5f7fb;
+$color-bg-card: #ffffff;
+$color-accent: #0070f3;
+$color-text-main: #222222;
+$color-text-muted: #555555;
+$color-border-soft: #e0e4ef;
+$color-error: #b00020;
+
+$radius-lg: 16px;
+$radius-md: 12px;
+$shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.08);
+
+@mixin card {
+  background-color: $color-bg-card;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-soft;
+  border: 1px solid $color-border-soft;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: $font-family-base;
+  color: $color-text-main;
+  background-color: $color-bg-page;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: $color-accent;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+a,
+button,
+input,
+textarea {
+  &:focus-visible {
+    outline: 3px solid $color-accent;
+    outline-offset: 3px;
+  }
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 0.75rem 1.25rem;
+  background-color: #ffffff;
+  color: $color-text-main;
+  border-radius: 999px;
+  box-shadow: $shadow-soft;
+  z-index: 1000;
+
+  &:focus {
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.75rem;
+  }
+}
+
+.page {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'header'
+    'hero'
+    'work'
+    'about'
+    'contact'
+    'footer';
+  gap: 1.75rem;
+  padding: 1.5rem 1rem 2rem;
+}
+
+.header {
+  grid-area: header;
+}
+
+.hero {
+  grid-area: hero;
+}
+
+.portfolio {
+  grid-area: work;
+}
+
+.about {
+  grid-area: about;
+}
+
+.contact {
+  grid-area: contact;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.header {
+  &__inner {
+    @include card;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+}
+
+.logo {
+  height: 3.5rem;
+}
+
+.nav {
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item a {
+    font-size: 0.95rem;
+    color: $color-text-muted;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+@supports not (gap: 0.75rem) {
+  .nav__list {
+    gap: 0;
+
+    .nav__item + .nav__item {
+      margin-left: 0.75rem;
+    }
+  }
+}
+
+.hero {
+  @include card;
+  padding: 2rem 1.25rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  &__content {
+    max-width: 640px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: $color-accent;
+  }
+
+  &__description {
+    margin-bottom: 1.5rem;
+    color: $color-text-muted;
+    line-height: 1.6;
+  }
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.6rem;
+  border-radius: 50px;
+  border: none;
+  background-color: $color-accent;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+}
+
+.section-title {
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.portfolio {
+  @include card;
+  padding: 1.75rem 1.25rem;
+
+  &__grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+.card {
+  padding: 1.25rem;
+  border-radius: $radius-md;
+  border: 1px solid $color-border-soft;
+  background: linear-gradient(135deg, #ffffff, #f7f9ff);
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &__title {
+    font-size: 1.05rem;
+  }
+
+  &__text {
+    font-size: 0.95rem;
+    color: $color-text-muted;
+    line-height: 1.5;
+  }
+}
+
+.about {
+  @include card;
+  padding: 1.75rem 1.25rem;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'about-photo'
+      'about-text';
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  &__text {
+    grid-area: about-text;
+    color: $color-text-muted;
+    line-height: 1.6;
+
+    .section-title {
+      margin-bottom: 1rem;
+      color: $color-text-main;
+    }
+  }
+
+  &__photo {
+    grid-area: about-photo;
+    margin: 0 auto;
+    max-width: 260px;
+
+    img {
+      border-radius: $radius-lg;
+      border: 4px solid #ffffff;
+      box-shadow: $shadow-soft;
+    }
+  }
+}
+
+.contact {
+  @include card;
+  padding: 1.75rem 1.25rem;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+
+  &__form {
+    max-width: 480px;
+    display: grid;
+    gap: 1rem;
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  label {
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  input[type='text'],
+  input[type='email'] {
+    padding: 0.6rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid $color-border-soft;
+    font-size: 0.95rem;
+  }
+
+  &--checkbox {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+
+    input {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+  }
+}
+
+.form-message {
+  min-height: 1.2em;
+  font-size: 0.9rem;
+  color: $color-error;
+}
+
+.footer {
+  text-align: center;
+  padding: 1.25rem;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border-soft;
+  background-color: $color-bg-card;
+  font-size: 0.95rem;
+  color: $color-text-muted;
+
+  p {
+    margin: 0.25rem 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .page {
+    gap: 2.5rem;
+    padding: 2rem clamp(1.5rem, 4vw, 4rem);
+  }
+
+  .header__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.75rem;
+    gap: 2rem;
+  }
+
+  .nav__list {
+    justify-content: flex-end;
+    gap: 1.5rem;
+  }
+
+  .hero {
+    padding: clamp(2.5rem, 6vw, 4rem);
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 2.6rem);
+    }
+  }
+
+  .portfolio {
+    padding: 2rem clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .about {
+    padding: 2rem clamp(1.5rem, 4vw, 2.5rem);
+
+    &__grid {
+      grid-template-columns: 1.6fr 1fr;
+      grid-template-areas: 'about-text about-photo';
+    }
+
+    &__photo {
+      max-width: 320px;
+    }
+  }
+
+  .contact {
+    padding: 2rem clamp(1.5rem, 4vw, 2.5rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .page {
+    padding: 2.5rem clamp(2rem, 5vw, 5rem);
+  }
+
+  .portfolio__grid {
+    gap: 1.5rem;
+  }
+}
